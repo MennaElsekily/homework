@@ -1,0 +1,15 @@
+Q1:
+main()
+ is the entry point of the project and the execution start from the first line in it
+
+Q2:
+var is a keyword not datatype
+it holds the type of the variable store inside it at compile time
+ and can't change later
+dynamic is a datatype that store any type of variable inside
+ and can be change later 
+so we can say dynamic x=5;
+then x="ahmed";
+but we cant say var x=5;
+then x="ahmed";
+
