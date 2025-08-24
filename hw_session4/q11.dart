@@ -14,16 +14,13 @@ void main() {
 
   if (isStudent) {
     price *= 0.9;
-    if (hasCoupon) {
-      price *= 0.95;
     }
-  } else {
-    if (hasCoupon) {
+     else if (hasCoupon) {
       price *= 0.85;
-    } else if (price > 100) {
+    } else  (price > 100) {
       price *= 0.80;
     }
-  }
+  
 
   print("Final price: ${price.toStringAsFixed(2)}");
 }
