@@ -2,20 +2,25 @@
 '/products', '/profile', or other). Handle each case with appropriate output, including maps and null
 safety where needed.*/
 void main() {
-  String path = '/Profile';
+  Map<String, String> routes = {
+    "/": "Home Page",
+    "/products": "Products Page",
+    "/profile": "Profile Page",
+  };
+
+  String path = "/products";
+
   switch (path) {
-    case '/':
-      print("Welcome to HomePage");
+    case "/":
+      print(routes["/"]);
       break;
-    case '/Products':
-      Map<String, dynamic> products = {"id": 1, "Name": "Laptop"};
-      print("Products Page: $products");
+    case "/products":
+      print(routes["/products"]);
       break;
-    case '/Profile':
-      String? user = null;
-      print(user ?? "Guest Profile");
+    case "/profile":
+      print(routes["/profile"]);
       break;
     default:
-      print("Not found");
+      print("404 - Page Not Found");
   }
 }
