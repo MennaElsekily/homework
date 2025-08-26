@@ -3,6 +3,8 @@ discounts based on whether the user is a student, has a coupon, or if the price 
 Print the final price.*/
 import 'dart:io';
 
+import 'dart:io';
+
 void main() {
   print("Are you a student? (yes/no): ");
   bool isStudent = stdin.readLineSync() == "yes";
@@ -14,13 +16,11 @@ void main() {
 
   if (isStudent) {
     price *= 0.9;
-    }
-     else if (hasCoupon) {
-      price *= 0.85;
-    } else  (price > 100) {
-      price *= 0.80;
-    }
-  
+  } else if (hasCoupon) {
+    price *= 0.85;
+  } else if (price > 100) {
+    price *= 0.80;
+  }
 
   print("Final price: ${price.toStringAsFixed(2)}");
 }
