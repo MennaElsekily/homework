@@ -9,10 +9,10 @@ void main() {
     stdout.write('Enter number $i: ');
     final x = int.parse(stdin.readLineSync()!);
 
-    if (max1 == null || x > max1!) {
+    if (max1 == null || x > max1) {
       max2 = max1;
       max1 = x;
-    } else if (x < max1! && (max2 == null || x > max2!)) {
+    } else if (x < max1 && (max2 == null || x > max2)) {
       max2 = x;
     }
   }
