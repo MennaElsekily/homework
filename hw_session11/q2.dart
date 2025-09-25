@@ -12,8 +12,8 @@ class Shape {
 }
 
 class Rectangle extends Shape {
-  double _width=1
-  double _height=1
+  double _width = 1;
+  double _height = 1;
   Rectangle(double height, double width) {
     setWidth(width);
     setHeight(height);
