@@ -49,13 +49,6 @@ class HeaderSection extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: const Color(0xFF7C4DFF),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 10,
-              offset: Offset(0, 5),
-            ),
-          ],
         ),
         padding: const EdgeInsets.fromLTRB(16, 14, 16, 12),
         child: Column(
@@ -85,13 +78,6 @@ class HeaderSection extends StatelessWidget {
               decoration: BoxDecoration(
                 color: const Color(0xFF6E40C9),
                 borderRadius: BorderRadius.circular(14),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 3,
-                    offset: Offset(0, 2),
-                  ),
-                ],
               ),
               child: const Center(
                 child: Text(
@@ -224,7 +210,7 @@ class Feautressection extends StatelessWidget {
           ),
           SizedBox(height: 8),
           _FeatureCard(
-            iconBg: Color(0xFFF0E6FF),
+            iconBg: Colors.white,
             icon: Icons.speed,
             iconColor: Color(0xFF6E40C9),
             title: "Fast Performance",
@@ -258,6 +244,7 @@ class _FeatureCard extends StatelessWidget {
   final IconData icon;
   final String title;
   final String subtitle;
+  final Color backgroundColor = Colors.white;
 
   const _FeatureCard({
     required this.iconBg,
