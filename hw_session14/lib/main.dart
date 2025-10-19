@@ -10,10 +10,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(
-        backgroundColor: Color(0xffFFF8FF),
-        body: Column(
-          children: [HeaderSection(), QuickStats(), Feautressection()],
+      debugShowCheckedModeBanner: false,
+      home: HomeScreen(),
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFFEF7FF),
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: const [
+            HeaderSection(),
+            QuickStats(),
+            Feautressection(),
+            BottomButtons(),
+          ],
         ),
       ),
     );
@@ -25,74 +43,70 @@ class HeaderSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(
-            left: 16,
-            right: 16,
-            top: 24,
-            bottom: 12,
-          ),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: const Color(0xff8160B9),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black26,
-                  blurRadius: 16,
-                  offset: Offset(0, 8),
-                ),
-              ],
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 6),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: const Color(0xFF7C4DFF),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 10,
+              offset: Offset(0, 5),
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text(
-                  'Hello! 👋',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-                const SizedBox(height: 6),
-                const Text(
-                  'Try your best to build this ui',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Container(
-                  width: double.infinity,
-                  height: 44,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF5A32B0),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Get Started',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          ],
         ),
-      ],
+        padding: const EdgeInsets.fromLTRB(16, 14, 16, 12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Hello! 👋",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 22,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            const SizedBox(height: 4),
+            const Text(
+              "Try your best to build this ui",
+              style: TextStyle(
+                color: Colors.white70,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Container(
+              width: double.infinity,
+              height: 38,
+              decoration: BoxDecoration(
+                color: const Color(0xFF6E40C9),
+                borderRadius: BorderRadius.circular(14),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 3,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: const Center(
+                child: Text(
+                  "Get Started",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -103,72 +117,39 @@ class QuickStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Quick Stats',
+            "Quick Stats",
             style: TextStyle(
-              fontSize: 25,
+              fontSize: 20,
               color: Colors.black,
               fontWeight: FontWeight.w800,
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 8),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Card(
-                color: Colors.white,
-                shadowColor: Colors.black12,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
-                  child: _StatCol(
-                    icon: Icons.people,
-                    value: "1,234",
-                    label: "Users",
-                    iconColor: Color(0xff7A4DFF),
-                  ),
-                ),
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              _StatCard(
+                icon: Icons.people,
+                iconColor: Color(0xFF7A4DFF),
+                value: "1,234",
+                label: "Users",
               ),
-              const SizedBox(width: 12),
-              Card(
-                color: Colors.white,
-                shadowColor: Colors.black12,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                  child: _StatCol(
-                    icon: Icons.star,
-                    value: "4.8",
-                    label: "Rating",
-                    iconColor: Color(0xffFF9A03),
-                  ),
-                ),
+              _StatCard(
+                icon: Icons.star,
+                iconColor: Color(0xFFFFA000),
+                value: "4.8",
+                label: "Rating",
               ),
-              const SizedBox(width: 12),
-              Card(
-                color: Colors.white,
-                shadowColor: Colors.black12,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                  child: _StatCol(
-                    icon: Icons.show_chart,
-                    value: "98%",
-                    label: "Success",
-                    iconColor: Color(0xff007AFF),
-                  ),
-                ),
+              _StatCard(
+                icon: Icons.trending_up,
+                iconColor: Color(0xFF007AFF),
+                value: "98%",
+                label: "Success",
               ),
             ],
           ),
@@ -178,35 +159,47 @@ class QuickStats extends StatelessWidget {
   }
 }
 
-class _StatCol extends StatelessWidget {
+class _StatCard extends StatelessWidget {
   final IconData icon;
-  final String value, label;
   final Color iconColor;
-  const _StatCol({
+  final String value;
+  final String label;
+
+  const _StatCard({
     required this.icon,
+    required this.iconColor,
     required this.value,
     required this.label,
-    required this.iconColor,
-    super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icon, color: iconColor, size: 28),
-        const SizedBox(height: 8),
-        Text(
-          value,
-          style: const TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.w700,
-          ),
+    return Card(
+      elevation: 4,
+      shadowColor: Colors.black12,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, color: iconColor, size: 24),
+            const SizedBox(height: 6),
+            Text(
+              value,
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            Text(
+              label,
+              style: const TextStyle(color: Colors.grey, fontSize: 13),
+            ),
+          ],
         ),
-        Text(label, style: const TextStyle(color: Colors.grey, fontSize: 14)),
-      ],
+      ),
     );
   }
 }
@@ -217,104 +210,41 @@ class Feautressection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
+        children: const [
+          Text(
             "Features",
             style: TextStyle(
-              fontSize: 25,
+              fontSize: 20,
               color: Colors.black,
               fontWeight: FontWeight.w800,
             ),
           ),
-          const SizedBox(height: 10),
-
-          Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(18),
-            ),
-            elevation: 4,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 6),
-              child: ListTile(
-                contentPadding: const EdgeInsets.symmetric(
-                  vertical: 6,
-                ), // was 8
-                leading: const _IconBox(
-                  color: Color(0xFFF0E6FF),
-                  icon: Icons.speed,
-                  iconColor: Color(0xFF6E40C9),
-                ),
-                title: const Text(
-                  "Fast Performance",
-                  style: TextStyle(fontWeight: FontWeight.w700),
-                ),
-                subtitle: const Text("Lightning fast app performance"),
-                trailing: const Icon(
-                  Icons.chevron_right,
-                  color: Colors.black38,
-                ),
-              ),
-            ),
+          SizedBox(height: 8),
+          _FeatureCard(
+            iconBg: Color(0xFFF0E6FF),
+            icon: Icons.speed,
+            iconColor: Color(0xFF6E40C9),
+            title: "Fast Performance",
+            subtitle: "Lightning fast app performance",
           ),
-          const SizedBox(height: 8),
-
-          Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(18),
-            ),
-            elevation: 4,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 6),
-              child: ListTile(
-                contentPadding: const EdgeInsets.symmetric(vertical: 6),
-                leading: const _IconBox(
-                  color: Color(0xFFE7F2FF),
-                  icon: Icons.shield_outlined,
-                  iconColor: Color(0xFF3B7EFF),
-                ),
-                title: const Text(
-                  "Secure",
-                  style: TextStyle(fontWeight: FontWeight.w700),
-                ),
-                subtitle: const Text("Your data is safe with us"),
-                trailing: const Icon(
-                  Icons.chevron_right,
-                  color: Colors.black38,
-                ),
-              ),
-            ),
+          SizedBox(height: 6),
+          _FeatureCard(
+            iconBg: Color(0xFFE7F2FF),
+            icon: Icons.shield_rounded,
+            iconColor: Color(0xFF007BFF),
+            title: "Secure",
+            subtitle: "Your data is safe with us",
           ),
-          const SizedBox(height: 8),
-
-          Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(18),
-            ),
-            elevation: 4,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 6),
-              child: ListTile(
-                contentPadding: const EdgeInsets.symmetric(vertical: 6),
-                leading: const _IconBox(
-                  color: Color(0xFFFFF2E4),
-                  icon: Icons.palette_rounded,
-                  iconColor: Color(0xFFFF9800),
-                ),
-
-                title: const Text(
-                  "Beautiful UI",
-                  style: TextStyle(fontWeight: FontWeight.w700),
-                ),
-                subtitle: const Text("Modern and clean design"),
-                trailing: const Icon(
-                  Icons.chevron_right,
-                  color: Colors.black38,
-                ),
-              ),
-            ),
+          SizedBox(height: 6),
+          _FeatureCard(
+            iconBg: Color(0xFFFFF2E4),
+            icon: Icons.palette_rounded,
+            iconColor: Color(0xFFFF9800),
+            title: "Beautiful UI",
+            subtitle: "Modern and clean design",
           ),
         ],
       ),
@@ -322,27 +252,107 @@ class Feautressection extends StatelessWidget {
   }
 }
 
-class _IconBox extends StatelessWidget {
-  final Color color;
+class _FeatureCard extends StatelessWidget {
+  final Color iconBg;
   final Color iconColor;
   final IconData icon;
-  const _IconBox({
-    required this.color,
+  final String title;
+  final String subtitle;
+
+  const _FeatureCard({
+    required this.iconBg,
     required this.icon,
     required this.iconColor,
-    super.key,
+    required this.title,
+    required this.subtitle,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 44,
-      height: 44,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(12),
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        child: ListTile(
+          contentPadding: const EdgeInsets.symmetric(
+            vertical: 4,
+            horizontal: 6,
+          ),
+          leading: Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: iconBg,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(icon, color: iconColor, size: 22),
+          ),
+          title: Text(
+            title,
+            style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+          ),
+          subtitle: Text(subtitle, style: const TextStyle(fontSize: 13)),
+          trailing: const Icon(
+            Icons.chevron_right,
+            color: Colors.black38,
+            size: 20,
+          ),
+        ),
       ),
-      child: Icon(icon, color: iconColor, size: 24),
+    );
+  }
+}
+
+class BottomButtons extends StatelessWidget {
+  const BottomButtons({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 4, bottom: 6),
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              height: 42,
+              decoration: BoxDecoration(
+                color: const Color(0xFF007BFF),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Center(
+                child: Text(
+                  "Settings",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Container(
+              height: 42,
+              decoration: BoxDecoration(
+                color: const Color(0xFFFF9800),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Center(
+                child: Text(
+                  "Profile",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
