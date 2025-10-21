@@ -18,7 +18,7 @@ class FeautresSection extends StatelessWidget {
               fontWeight: FontWeight.w800,
             ),
           ),
-          SizedBox(height: 8),
+          SizedBox(height: 5),
           _FeatureCard(
             iconBg: Color(0xFFF0E6FF),
             icon: Icons.speed,
@@ -26,7 +26,7 @@ class FeautresSection extends StatelessWidget {
             title: "Fast Performance",
             subtitle: "Lightning fast app performance",
           ),
-          SizedBox(height: 6),
+          SizedBox(height: 5),
           _FeatureCard(
             iconBg: Color(0xFFE7F2FF),
             icon: Icons.shield_rounded,
@@ -34,7 +34,7 @@ class FeautresSection extends StatelessWidget {
             title: "Secure",
             subtitle: "Your data is safe with us",
           ),
-          SizedBox(height: 6),
+          SizedBox(height: 5),
           _FeatureCard(
             iconBg: Color(0xFFFFF2E4),
             icon: Icons.palette_rounded,
