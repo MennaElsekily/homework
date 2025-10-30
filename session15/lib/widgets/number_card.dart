@@ -1,81 +1,81 @@
 import 'package:flutter/material.dart';
-import 'package:session15/widgets/number_card_content.dart';
+import 'package:session15/widgets/custom_card.dart';
+import 'package:session15/widgets/section_title.dart';
+import 'package:session15/widgets/value_text.dart';
 
-class NumbersSection extends StatefulWidget {
-  const NumbersSection({super.key});
+class NumberCard extends StatefulWidget {
+  const NumberCard({
+    super.key,
+    required this.label,
+    required this.defaultValue,
+    required this.onChanged,
+  });
+
+  final String label;
+
+  final int defaultValue;
+  final Function(int) onChanged;
 
   @override
-  State<NumbersSection> createState() => _NumbersSectionState();
+  State<NumberCard> createState() => _NumberCardState();
 }
 
-class _NumbersSectionState extends State<NumbersSection> {
-  int weight = 60;
-  int age = 25;
+class _NumberCardState extends State<NumberCard> {
+  int value = 0;
+  @override
+  Widget build(BuildContext context) {
+    if (value == 0) {
+      value = widget.defaultValue;
+    }
+    return CustomCard(
+      child: Column(
+        children: [
+          SectionTitle(label: widget.label),
+          ValueText(text: value.toString()),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomIconButton(
+                icon: Icons.add,
+                onTap: () {
+                  value++;
+                  widget.onChanged(value);
+                  setState(() {});
+                },
+              ),
+
+              SizedBox(width: 16),
+
+              CustomIconButton(
+                icon: Icons.remove,
+                onTap: () {
+                  if (value > 0) value--;
+                  widget.onChanged(value);
+
+                  setState(() {});
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CustomIconButton extends StatelessWidget {
+  const CustomIconButton({super.key, required this.icon, required this.onTap});
+  final IconData icon;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // ---------- WEIGHT ----------
-        Expanded(
-          child: NumberCardContent(
-            label: 'WEIGHT',
-            weight: weight,
-            age: age,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _circleButton('−', () {
-                  setState(() => weight = (weight - 1).clamp(0, 300));
-                }),
-                _circleButton('+', () {
-                  setState(() => weight = (weight + 1).clamp(0, 300));
-                }),
-              ],
-            ),
-          ),
-        ),
-
-        const SizedBox(width: 16),
-
-        // ---------- AGE ----------
-        Expanded(
-          child: NumberCardContent(
-            label: 'AGE',
-            weight: weight,
-            age: age,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _circleButton('−', () {
-                  setState(() => age = (age - 1).clamp(0, 120));
-                }),
-                _circleButton('+', () {
-                  setState(() => age = (age + 1).clamp(0, 120));
-                }),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _circleButton(String label, VoidCallback onPressed) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        shape: const CircleBorder(),
-        minimumSize: const Size(56, 56),
-        padding: EdgeInsets.zero,
-        backgroundColor: const Color(0xFF4A4E5F),
-        foregroundColor: Colors.white,
-        elevation: 8,
-      ),
-      child: Text(
-        label,
-        style: const TextStyle(fontSize: 36, fontWeight: FontWeight.w600),
+    return GestureDetector(
+      onTap: onTap,
+      child: CircleAvatar(
+        backgroundColor: Color(0xff4A4E5F),
+        radius: 25,
+        child: Icon(icon, color: Colors.white, size: 30),
       ),
     );
   }

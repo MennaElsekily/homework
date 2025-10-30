@@ -2,25 +2,19 @@ import 'package:flutter/material.dart';
 
 class CustomCard extends StatelessWidget {
   final Widget child;
-  final double? height; // let content decide height
-  final Color color;
+  final Color? color;
 
-  const CustomCard({
-    super.key,
-    required this.child,
-    this.height,
-    required this.color,
-  });
+  const CustomCard({super.key, required this.child, this.color});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height,
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(vertical: 16),
       decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(16),
+        color: color ?? Color(0xff15152F),
+        borderRadius: BorderRadius.circular(8),
       ),
-      padding: const EdgeInsets.all(20),
       child: child,
     );
   }
